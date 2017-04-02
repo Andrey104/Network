@@ -27,6 +27,13 @@ public class Chat {
             new Settings(Chat);
         });
         mainMenu.add(settings);
+
+        JMenuItem privateChat = new JMenuItem("Приватный чат");
+        privateChat.addActionListener(e -> {
+            new Settings(Chat);
+        });
+        mainMenu.add(privateChat);
+
         tfMsg = new JTextField();
         taMain = new JTextArea(FRM_HEIDTH/19, 50);
         JScrollPane spMain = new JScrollPane(taMain);
@@ -40,7 +47,6 @@ public class Chat {
         btnSend.addActionListener(e -> {
             taMain.append("test");
         });
-
         menuBar.add(mainMenu);
 
         Chat.setDefaultCloseOperation (JFrame.DISPOSE_ON_CLOSE); //Закрываем приложение после закрытия всех окон
@@ -53,5 +59,6 @@ public class Chat {
         Chat.getContentPane().add(BorderLayout.EAST, btnSend);
         Chat.pack();
         Chat.setVisible(true);
+
     }
 }
