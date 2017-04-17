@@ -1,4 +1,4 @@
-package com.company;
+package com.company.physical_layer;
 
 public class SerialPortException extends Exception {
 

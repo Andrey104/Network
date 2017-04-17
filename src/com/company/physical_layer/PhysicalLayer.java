@@ -1,4 +1,4 @@
-package com.company;
+package com.company.physical_layer;
 
 import gnu.io.*;
 
@@ -8,7 +8,7 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.TooManyListenersException;
 
-public class SerialPortConnector implements SerialPortEventListener {
+public class PhysicalLayer implements SerialPortEventListener {
 
     private SerialPort serialPort;
     private InputStream is;
@@ -19,7 +19,7 @@ public class SerialPortConnector implements SerialPortEventListener {
 
     private byte[] buffer = new byte[256];
 
-    private SerialPortConnector(CommPortIdentifier cpi) throws SerialPortException {
+    private PhysicalLayer(CommPortIdentifier cpi) throws SerialPortException {
         try {
             serialPort = (SerialPort) cpi.open("TerminalApp", 2000);
             is = serialPort.getInputStream();
@@ -40,13 +40,13 @@ public class SerialPortConnector implements SerialPortEventListener {
         }
     }
 
-    public static SerialPortConnector open(String name) {
+    public static PhysicalLayer open(String name) {
         Enumeration portList = CommPortIdentifier.getPortIdentifiers();
         while (portList.hasMoreElements()) {
             CommPortIdentifier portId = (CommPortIdentifier) portList.nextElement();
             if (name.equals(portId.getName())) {
                 try {
-                    return new SerialPortConnector(portId);
+                    return new PhysicalLayer(portId);
                 } catch (SerialPortException e) {
                     return null;
                 }

@@ -1,7 +1,9 @@
-package com.company.Chat;
+package com.company.application_layer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class Chat {
     private JTextArea taMain;
@@ -13,24 +15,20 @@ public class Chat {
     private final int FRM_WIDTH = 400;
     private final int FRM_HEIDTH = 400;
 
-    public static void main(String[] args) {
-        new Chat();
-    }
+    public Chat(String[] PortsList) {
 
-    public Chat() {
-
-        JFrame Chat = new JFrame ("COMport Chat");
+        JFrame Chat = new JFrame ("COMport application_layer");
 
         mainMenu = new JMenu("Меню");
         JMenuItem settings = new JMenuItem("Настройки");
         settings.addActionListener(e -> {
-            new Settings(Chat);
+            new Settings(Chat, PortsList);
         });
         mainMenu.add(settings);
 
         JMenuItem privateChat = new JMenuItem("Приватный чат");
         privateChat.addActionListener(e -> {
-            new Settings(Chat);
+            new Settings(Chat, PortsList);
         });
         mainMenu.add(privateChat);
 
@@ -49,7 +47,7 @@ public class Chat {
         });
         menuBar.add(mainMenu);
 
-        Chat.setDefaultCloseOperation (JFrame.DISPOSE_ON_CLOSE); //Закрываем приложение после закрытия всех окон
+        Chat.setDefaultCloseOperation (WindowConstants.EXIT_ON_CLOSE); //Закрываем приложение после закрытия всех окон
         Chat.setJMenuBar(menuBar);
         Chat.setLocation(FRM_LOC_X, FRM_LOC_Y);
         Chat.setSize(FRM_WIDTH,FRM_HEIDTH);
